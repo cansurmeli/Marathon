@@ -168,4 +168,4 @@ jobs:
         run: |
           echo "### SBOM Summary" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          jq -r '.components[] | "- \(.name) \(.version)' → \(.licenses[0].license.id // "Unknown")"' sarif-input/sbom-cyclonedx.json/bom.json >> $GITHUB_STEP_SUMMARY
+          jq -r '.components[] | "- \(.name) \(.version) → \(.licenses[0].license.id // "Unknown")"' sarif-input/sbom-cyclonedx.json/bom.json >> $GITHUB_STEP_SUMMARY
