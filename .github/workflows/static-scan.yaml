@@ -110,7 +110,8 @@ jobs:
     name: Semgrep Scans
     runs-on: ubuntu-latest
     container:
-      image: returntocorp/semgrep@sha:8f85dbfb5d38592d0b916caac855cf18facba40674988caf763d52b9fe916694
+      image: returntocorp/semgrep@sha256:8f85dbfb5d38592d0b916caac855cf18facba40674988caf763d52b9fe916694
+
     permissions:
       security-events: write
       actions: read
