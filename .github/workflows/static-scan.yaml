@@ -1,9 +1,9 @@
-name: Pipeline
+name: Static Scan
 
 on:
   workflow_dispatch:
 
-run-name:
+run-name: Static Scan - ${{ github.ref_name }}
 
 permissions:
   contents: read
