@@ -45,7 +45,7 @@ jobs:
 
       - name: Grype Dependency Scan
         id: scan
-        uses: anchore/grype-action@v2.11.0
+        uses: anchore/scan-action@dccc91b95904c40fb7585875d9ce46eeb3b497df
         with:
           path: .
           sbom: target/bom.json
