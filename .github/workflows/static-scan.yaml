@@ -42,3 +42,14 @@ jobs:
         with:
           name: sbom-cyclonedx.json
           path: target/bom.json
+
+      - name: Grype Dependency Scan
+        id: scan
+        uses: anchore/grype-action@v2.11.0
+        with:
+          path: .
+          sbom: target/bom.json
+          fail-build: false
+          fail-on-severity: "medium"
+          output-format: "table"
+          output-file: "grype-report.txt"
