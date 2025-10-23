@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup JDK
         uses: actions/setup-java@v3
@@ -105,3 +105,29 @@ jobs:
           path: ./
           base: ${{ github.head_ref }}
           extra_args: --exclude-paths=.truffleignore --no-verification
+
+  semgrep-scan:
+    name: Semgrep Scans
+    runs-on: ubuntu-latest
+    container:
+      image: returntocorp/semgrep@sha:8f85dbfb5d38592d0b916caac855cf18facba40674988caf763d52b9fe916694
+    permissions:
+      security-events: write
+      actions: read
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Run Smegrep using selected rules (metrics off)
+        run: |
+          semgrep scan --sarif --config auto . --output /tmp/semgrep-results.sarif || true
+
+      - name: Upload Semgrep SARIF results
+        uses: actions/upload-artifact@v4
+        with:
+          name: semgrep-scan-results.sarif
+          path: /tmp/semgrep-results.sarif
