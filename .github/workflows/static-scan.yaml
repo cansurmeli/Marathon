@@ -85,7 +85,7 @@ jobs:
           format: sarif
 
       - name: Write HADOLINT_RESULTS to SARIF file
-        run: echo "HADOLINT_RESULTS" > /tmp/hadolint-results.sarif
+        run: echo "$HADOLINT_RESULTS" > /tmp/hadolint-results.sarif
         env:
           HADOLINT_RESULTS: ${{ env.HADOLINT_RESULTS }}
 
