@@ -48,11 +48,7 @@ jobs:
         uses: anchore/scan-action@a5605eb0943e46279cb4fbd9d44297355d3520ab
         with:
           path: .
-          sbom: target/bom.json
           fail-build: false
-          fail-on-severity: "medium"
-          output-format: "table"
-          output-file: "grype-report.txt"
 
       - name: Upload Grype Report as artifact
         uses: actions/upload-artifact@v4
